@@ -1,0 +1,63 @@
+.navbar {
+  height: 50px;
+  background-color: #ffffff;
+  text-align: center;
+  .hamburgerBox {
+    height: 50px;
+    line-height: 58px;
+    padding: 0 10px;
+    float: left;
+  }
+  .breadcrumbBox {
+    float: left;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 10px;
+    /deep/.el-breadcrumb__inner {
+      color: #97a8be;
+      font-weight: 400;
+    }
+    /deep/.is-link {
+      font-weight: 400;
+      color: #303133;
+    }
+  }
+  .navBlock {
+    // display: table-cell; //主要是这个属性
+    // vertical-align: middle;
+    display: flex;
+    // justify-content:center;
+    align-items:Center;
+    height: 50px;
+    line-height: 50px;
+    width: 205px;
+    float: right;
+    img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      float: right;
+      margin: 0 14px;
+    }
+    i:before {
+      color: #606266;
+      font-size: 20px!important;
+      margin: 0 14px;
+    }
+    // navbar的icon样式
+    .icon {
+      width: 1.2em;
+      height: 1.2em;
+      margin: 0 14px;
+      font-weight: 700px;
+    }
+  }
+  // navbar上的icon
+  .pointer {
+    cursor: pointer 
+  }
+  .selectLang {
+    height: 18px;
+    line-height: 18px;
+  }
+}

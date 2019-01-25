@@ -1,0 +1,64 @@
+// 菜单全局样式
+
+.sliderbar {
+  transition: all 0.3s;
+  min-height: 100%;
+  width: 180px;
+  background-color: #304156;
+  .leftLogo {
+    width: 180px;
+    height: 160px;
+    display: table-cell; //主要是这个属性
+    vertical-align: middle;
+    text-align: center;
+    img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      padding: 3px;
+      border: 1px solid #fff;
+    }
+  }
+  /deep/.el-submenu__title, .el-tooltip, .el-menu-item {
+    // icon样式
+    i:first-child {
+      width: 16px!important;
+      margin-right: 12px!important;
+    }
+    i:first-child:before {
+      font-size: 16px!important;
+    }
+  }
+}
+
+// 菜单缩小的样式
+.hideSilderBar {
+  width: 40px!important;
+  /deep/.el-menu--collapse {
+    width: 40px;
+  }
+  /deep/.el-submenu__title, .el-tooltip {
+    text-align: center;
+    padding: 0 10px!important;
+    i:first-child {
+      width: 16px!important;
+      margin: 0!important;
+    }
+    .el-submenu__icon-arrow {
+      display: none;
+    }
+    span {
+      display: inline-block;
+      width: 0!important;
+      overflow: hidden;
+    }
+  }
+  // 左侧logo样式
+  .leftLogo {
+    height: 75px!important;
+    img {
+      width: 34px!important;
+      height: 34px!important;
+    }
+  }
+}
