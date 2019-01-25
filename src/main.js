@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import Echarts from 'echarts';
 import '@/icon/iconfont.js';
 import '@/styles/index.less'; // global css
 
@@ -11,11 +12,14 @@ import './plugins/element.js';
 
 Vue.config.productionTip = false;
 
+Vue.prototype.$echarts = Echarts;
+
 Vue.use(core);
 
 new Vue({
   router,
   store,
   i18n,
+  Echarts,
   render: h => h(App)
 }).$mount('#app');
