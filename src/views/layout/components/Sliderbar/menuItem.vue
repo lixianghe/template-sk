@@ -7,7 +7,9 @@
   <template  v-if="item.hidden && item.children">
     <viewLink :path="resolvePath(child.path)" v-for="(child, index) in item.children" :key="index">
       <el-menu-item :index="resolvePath(child.path)">
-        <i :class="child.meta.icon"></i>
+        <i>
+          <icon :iconName="child.meta.icon"></icon>
+        </i>
         <span slot="title">{{translation(child.meta.title)}}</span>
       </el-menu-item>
     </viewLink>
@@ -15,7 +17,9 @@
   <!-- 如果有下级菜单 -->
   <el-submenu v-else-if="!item.hidden && item.children" :index="resolvePath(item.path)">
     <template v-if="item.meta" slot="title">
-      <i :class="item.meta.icon"></i>
+      <i>
+        <icon :iconName="item.meta.icon"></icon>
+      </i>
       <span>{{translation(item.meta.title)}}</span>
     </template>
     <!-- 这里使用递归写嵌套的菜单（如果 item 下面还有 children 就走递归，如果没有就直接走 el-menu-item） -->

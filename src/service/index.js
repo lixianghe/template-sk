@@ -20,7 +20,6 @@ export const apiFormat2 = (url, params) => {
     let propertys = Object.keys(params);
     url = url + '?';
     propertys.forEach((key, index) => {
-      console.log(key, index);
       if (params[key]) {
         if (index === propertys.length - 1) {
           url = url + key + '=' + params[key];

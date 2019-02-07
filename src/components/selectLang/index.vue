@@ -4,9 +4,7 @@
 <template>
   <el-dropdown @command="handleCommand" trigger="click">
     <span>
-      <svg class="icon pointer" aria-hidden="true">
-        <use xlink:href="#icon-yuyan1"></use>
-      </svg>
+      <icon :iconClass="pointer" :iconName="iconName"></icon>
     </span>
     <el-dropdown-menu slot="dropdown">
       <el-dropdown-item :disabled="lang === 'zh'" command="zh">中文</el-dropdown-item>
@@ -17,6 +15,12 @@
 
 <script>
 export default {
+  data () {
+    return {
+      pointer: 'pointer',
+      iconName: '#icon-yuyan1'
+    };
+  },
   computed: {
     lang () {
       return this.$store.getters.lang;

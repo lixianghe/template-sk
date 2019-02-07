@@ -4,17 +4,19 @@
   height: calc(100vh);
   background-size: cover;
   background-color: #b8e5f8;
-  background-image: url('https://static.zhihu.com/heifetz/assets/sign_bg.db29b0fb.png');
+  background-image: url('../../assets/login.png');
   display: flex;
   justify-content:center;
   align-items:Center;
   .content {
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
     padding: 15px 20px;
     width: 420px;
     height: 350px;
-    background: #fff;
+    background: rgba(250, 250, 250, 0.9);
     .title {
-      color: #0084ff;
+      color: #34495e;
       font-size: 24px;
       font-weight: 700;
       margin-bottom: 35px;
@@ -34,6 +36,10 @@
     /deep/.el-input__inner {
       height: 45px;
       line-height: 45px;
+      &:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0px 1000px #fff inset !important;
+        -webkit-text-fill-color: #283443 !important;
+      }
     }
     /deep/.icon {
       width: 18px;
@@ -43,6 +49,12 @@
       height: 45px;
       line-height: 50px;
     }
+    /deep/.el-form-item.is-error .el-input__inner {
+      border: 1px solid #dcdfe6;
+    }
+    /deep/.el-form-item.is-success .el-input__inner {
+      border: 1px solid #dcdfe6;
+    }
   }
 }
 </style>
@@ -50,22 +62,18 @@
 <template>
   <div class="login">
     <div class="content">
-      <el-form :model="loginForm" :rules="rules" ref="loginForm" class="demo-form-inline">
+      <el-form autocomplete=”off” :model="loginForm" :rules="rules" ref="loginForm" class="demo-form-inline">
         <p class="title">
           用户登录
         </p>
         <el-form-item label="" prop="account">
-          <el-input type="text" v-model="loginForm.account" placeholder="请输入账号">
-            <svg slot="prefix" class="icon" aria-hidden="false">
-              <use xlink:href="#icon-icon_account"></use>
-            </svg>
+          <el-input  type="text" v-model="loginForm.account" placeholder="请输入账号">
+            <span slot="prefix"><icon :iconName="iconNameO"></icon></span>
           </el-input>
         </el-form-item>
         <el-form-item label="" prop="password">
           <el-input type="passWord" v-model="loginForm.password" placeholder="请输入密码">
-            <svg slot="prefix" class="icon" aria-hidden="false">
-              <use xlink:href="#icon-mima1"></use>
-            </svg>
+            <span slot="prefix"><icon :iconName="iconNameT"></icon></span>
           </el-input>
         </el-form-item>
         <el-form-item style="margin-bottom:10px">
@@ -95,7 +103,10 @@ export default {
             { required: true, message: '请输入密码', trigger: 'blur' },
             { min: 4, max: 16, message: '长度在 4 到 16 个字符', trigger: 'blur' }
           ]
-        }
+        },
+        iconNameO: '#icon-icon_account',
+        iconNameT: '#icon-mima1'
+
     };
   },
   methods: {
@@ -108,7 +119,7 @@ export default {
           try {
             const res = await login(qs.stringify(params));
             if (res.result) {
-              this.$router.push({ name: 'home' });
+              this.$router.push({ name: 'dashboard' });
               this.$message.success({ message: '登陆成功！' });
             }
           } catch (e) {

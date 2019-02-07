@@ -3,7 +3,7 @@ const CompressionPlugin = require('compression-webpack-plugin'); // Gzip
 // const zopfli = require("@gfx/zopfli");//zopfli压缩
 // const BrotliPlugin = require("brotli-webpack-plugin");//brotli压缩
 const productionGzipExtensions = /\.(js|css|json|txt|html|ico|svg)(\?.*)?$/i;
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin; // Webpack包文件分析器
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin; // Webpack包文件分析器
 
 function resolve (dir) {
   return path.join(__dirname, dir);
@@ -11,7 +11,7 @@ function resolve (dir) {
 
 module.exports = {
   // 基本路径
-  publicPath: process.env.NODE_ENV === 'production' ? './' : '/',
+  publicPath: process.env.NODE_ENV === 'production' ? '/' : '/',
 
   // 输出文件目录
   outputDir: 'dist',
@@ -54,13 +54,17 @@ module.exports = {
         },
         minRatio: 0.8,
         test: productionGzipExtensions
-      })
+      }),
       // new BrotliPlugin({
       //   test: productionGzipExtensions,
       //   minRatio: 0.8
       // }),
       // Webpack包文件分析器(https://github.com/webpack-contrib/webpack-bundle-analyzer)
-      // new BundleAnalyzerPlugin(),
+      new BundleAnalyzerPlugin({
+        analyzerMode: 'static',
+        reportFilename: 'bundle-report.html',
+        openAnalyzer: true
+      })
     ];
     // 开发环境配置
 		let pluginsDev = [

@@ -5,7 +5,7 @@ import _glTools from '@/js/core/utils/';
 import { Notification, Message } from 'element-ui';
 import router from '../../router';
 
-const baseUrl = '/';
+const baseUrl = 'http://182.61.48.201:8080';
 const http = axios.create({
   baseURL: baseUrl
 });

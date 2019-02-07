@@ -24,7 +24,7 @@ const router = new Router({
       children: [
         {
           path: 'dashboard',
-          meta: { title: 'dashboard', icon: 'el-icon-goods' },
+          meta: { title: 'dashboard', icon: '#icon-siglyphalien' },
           component: () => import('@/views/home/index')
         }
       ]
@@ -34,7 +34,7 @@ const router = new Router({
       name: 'baseCenter',
       redirect: '/home',
       component: layout,
-      meta: { title: 'baseCenter', icon: 'el-icon-menu' },
+      meta: { title: 'baseCenter', icon: '#icon-maogou' },
       children: [
         {
           path: 'baseInfo',

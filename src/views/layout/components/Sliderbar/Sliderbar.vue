@@ -43,7 +43,6 @@ export default {
       return this.$router.options.routes;
     },
     collapse () {
-      console.log(this.sliderbar);
       return !this.sliderbar.opened;
     },
     // 左边菜单的缩放

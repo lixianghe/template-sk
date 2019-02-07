@@ -8,20 +8,15 @@
     <div class="navBlock">
       <img src="@/assets/leftLogo/leftLogo.jpg" alt="">
       <el-tooltip class="item" effect="dark" content="全屏" placement="bottom">
-        <svg class="icon pointer" aria-hidden="false" @click="screenfull">
-          <use xlink:href="#icon-quanping"></use>
-        </svg>
+        <span @click="screenfull">
+          <icon :iconClass="iconClass" :iconName="iconNameO"></icon>
+        </span>
       </el-tooltip>
-      <!-- <el-tooltip class="item" effect="dark" content="切换语言" placement="bottom">
-        <svg class="icon pointer" aria-hidden="true">
-          <use xlink:href="#icon-yuyan1"></use>
-        </svg>
-      </el-tooltip> -->
       <select-lang class="selectLang"></select-lang>
       <el-tooltip class="item" effect="dark" content="登出" placement="bottom">
-        <svg class="icon pointer" aria-hidden="true" @click="loginOut">
-          <use xlink:href="#icon-tuichu1"></use>
-        </svg>
+        <span @click="loginOut">
+          <icon :iconClass="iconClass" :iconName="iconNameT"></icon>
+        </span>
       </el-tooltip>
     </div>
   </div>
@@ -40,7 +35,10 @@ export default {
   data () {
     return {
       isActive: false,
-      breadcList: []
+      breadcList: [],
+      iconNameO: '#icon-quanping',
+      iconClass: 'pointer',
+      iconNameT: '#icon-tuichu1'
     };
   },
   watch: {
@@ -68,6 +66,7 @@ export default {
     },
     // 退出登录
     async loginOut () {
+      console.log(11111);
       const res = await loginOut();
       if (res.result) {
         this._glTools.removeStore('token', true);
