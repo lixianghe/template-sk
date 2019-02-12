@@ -2,12 +2,14 @@ const path = require('path');
 const CompressionPlugin = require('compression-webpack-plugin'); // Gzip
 // const zopfli = require("@gfx/zopfli");//zopfli压缩
 // const BrotliPlugin = require("brotli-webpack-plugin");//brotli压缩
-const productionGzipExtensions = /\.(js|css|json|txt|html|ico|svg)(\?.*)?$/i;
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin; // Webpack包文件分析器
 
 function resolve (dir) {
   return path.join(__dirname, dir);
 }
+
+// 定义压缩文件类型
+const productionGzipExtensions = /\.(js|css|json|txt|html|ico|svg)(\?.*)?$/i;
 
 module.exports = {
   // 基本路径
@@ -35,23 +37,25 @@ module.exports = {
 
   // 如果这个值是一个对象，则会通过 webpack-merge 合并到最终的配置中。如果这个值是一个函数，则会接收被解析的配置作为参数。该函数及可以修改配置并不返回任何东西，也可以返回一个被克隆或合并过的配置版本。
   configureWebpack: config => {
+    // 配置externals(编译不会打包externals里面的包)
+    config.externals = {
+      'vue': 'Vue',
+      'element-ui': 'ELEMENT',
+      'vue-router': 'VueRouter',
+      'vuex': 'Vuex',
+      'axios': 'axios',
+      'echarts': 'echarts'
+     };
     // 配置loader
     // 生产、测试环境配置gzip
     let pluginsPro = [
-      // new CompressionPlugin({ //文件开启Gzip，也可以通过服务端(如：nginx)(https://github.com/webpack-contrib/compression-webpack-plugin)
-      // 	filename: '[path].gz[query]',
-      // 	algorithm: 'gzip',
-      // 	test: productionGzipExtensions,
-      // 	threshold: 8192,
-      // 	minRatio: 0.8,
-      // }),
+      // 开启gzip
       new CompressionPlugin({
-        // algorithm(input, compressionOptions, callback) {
-        //   return zopfli.gzip(input, compressionOptions, callback);
-        // },
+        filename: '[path].gz[query]',
         compressionOptions: {
           numiterations: 15
         },
+        threshold: 10240,
         minRatio: 0.8,
         test: productionGzipExtensions
       }),

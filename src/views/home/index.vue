@@ -62,6 +62,7 @@
 </template>
 
 <script>
+import echarts from 'echarts';
 export default {
   data () {
     return {
@@ -214,7 +215,7 @@ export default {
           }
         ]
       };
-      this.firstChart = this.$echarts.init(document.getElementById('first-chart'));
+      this.firstChart = echarts.init(document.getElementById('first-chart'));
       this.firstChart.setOption(option);
     },
     secondInit () {
@@ -280,7 +281,7 @@ export default {
           }
         ]
       };
-      this.sencondChart = this.$echarts.init(document.getElementById('second-chart'));
+      this.sencondChart = echarts.init(document.getElementById('second-chart'));
       this.sencondChart.setOption(option);
     },
     thirdInit () {
@@ -328,7 +329,7 @@ export default {
         ],
         animationDuration: 2000
       };
-      this.thirdChart = this.$echarts.init(document.getElementById('third-chart'));
+      this.thirdChart = echarts.init(document.getElementById('third-chart'));
       this.thirdChart.setOption(option);
     },
     bigInit () {
@@ -496,7 +497,7 @@ export default {
           }
         ]
       };
-      this.bigChart = this.$echarts.init(document.getElementById('big-chart'));
+      this.bigChart = echarts.init(document.getElementById('big-chart'));
       this.bigChart.setOption(option);
     }
   }
